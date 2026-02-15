@@ -17,6 +17,8 @@ export default function Home() {
         Logged in as <b>{data.user.email}</b> — role: <b>{(data.user as any).role}</b>
       </p>
       <button onClick={() => signOut({ callbackUrl: "/login" })}>Logout</button>
+      <hr />
+      <p>Login working ✅ Next we add prosthesis marketplace + Stripe.</p>
     </div>
   );
 }
