@@ -1,3 +1,5 @@
+export const runtime = "nodejs";
+
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { prisma } from "../../../../lib/prisma";
@@ -9,9 +11,15 @@ export async function POST(req: Request) {
   const name = body.name ? String(body.name).trim() : null;
   const role = String(body.role || "PATIENT");
 
-  if (!email || !password) return NextResponse.json({ error: "Email & password required" }, { status: 400 });
-  if (password.length < 6) return NextResponse.json({ error: "Password must be 6+ chars" }, { status: 400 });
-  if (!["PATIENT", "SUPPLIER", "DOCTOR"].includes(role)) return NextResponse.json({ error: "Invalid role" }, { status: 400 });
+  if (!email || !password) {
+    return NextResponse.json({ error: "Email and password are required" }, { status: 400 });
+  }
+  if (password.length < 6) {
+    return NextResponse.json({ error: "Password must be at least 6 characters" }, { status: 400 });
+  }
+  if (!["PATIENT", "SUPPLIER", "DOCTOR"].includes(role)) {
+    return NextResponse.json({ error: "Invalid role" }, { status: 400 });
+  }
 
   const exists = await prisma.user.findUnique({ where: { email } });
   if (exists) return NextResponse.json({ error: "Email already registered" }, { status: 409 });
