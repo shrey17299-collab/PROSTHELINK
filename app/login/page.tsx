@@ -14,9 +14,21 @@ export default function LoginPage() {
   return (
     <div style={{ maxWidth: 420 }}>
       <h3>Login</h3>
-      <input style={{ width: "100%", marginBottom: 8 }} value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" />
-      <input style={{ width: "100%", marginBottom: 8 }} value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" type="password" />
+      <input
+        style={{ width: "100%", marginBottom: 8 }}
+        value={email}
+        onChange={e => setEmail(e.target.value)}
+        placeholder="Email"
+      />
+      <input
+        style={{ width: "100%", marginBottom: 8 }}
+        value={password}
+        onChange={e => setPassword(e.target.value)}
+        placeholder="Password"
+        type="password"
+      />
       <button onClick={onLogin}>Sign in</button>
+
       <p style={{ marginTop: 12 }}>
         New user? <a href="/signup">Create account</a>
       </p>
